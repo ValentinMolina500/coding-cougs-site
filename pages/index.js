@@ -12,6 +12,7 @@ import {
   Image,
   Grid,
   GridItem,
+  Stack,
 } from "@chakra-ui/react";
 import TextTransition, { presets } from "react-text-transition";
 import Terminal from "terminal-in-react";
@@ -90,10 +91,10 @@ export default function Home() {
               options={{
                 fullScreen: false,
                 fpsLimit: 60,
-                
+                //  rgba(132,94,194,1) 0%, rgba(214,93,177,1) 20%, rgba(255,111,145,1) 40%, rgba(255,150,113,1) 60%, rgba(255,199,95,1) 80%, rgba(249,248,113,1) 100%);
                 particles: {
                   color: {
-                    value: ["#ff6f91", "rgba(132,94,194,1)"],
+                    value: ["rgba(132,94,194,1)", "rgba(214,93,177,1)", "rgba(255,111,145,1)", "rgba(255,150,113,1)", "rgba(255,199,95,1)", "rgba(249,248,113,1)"],
                   },
                   links: {
                     color: "#111",
@@ -118,17 +119,20 @@ export default function Home() {
                       enable: true,
                       value_area: 800,
                     },
-                    value: 80,
+                    value:100,
                   },
                   opacity: {
                     value: 0.5,
                   },
                   shape: {
-                    type: "circle",
+                    type: "polygon",
+                    options: {
+                      polygon: [ { sides: 6 }]
+                    }
                   },
                   size: {
                     random: true,
-                    value: 5,
+                    value: 8,
                   },
                 },
                 detectRetina: true,
@@ -139,14 +143,14 @@ export default function Home() {
         </Box>
             
         <Flex
-        bg="white"
-          zIndex={1}
+          bg="rgba(255, 255, 255, 1)"
           h="max-content"
-          p={"7rem"}
+          p={"2rem"}
+          zIndex={"1"}
           flexDir={"column"}
           justifyContent={"center"}
           alignItems={"center"}
-          borderRadius={"100%"}
+          // borderRadius={"100%"}
         >
           <Box mt="0.25rem" textAlign={"center"}>
             <Heading color="gray.800" fontSize="3.5rem">
@@ -189,16 +193,31 @@ export default function Home() {
         </Text>
       </Center>
       {/* <Box bg="#ff9671" p="8rem"></Box> */}
-      <Grid gridTemplateColumns={"1fr 1fr"} gridTemplateRows={"25rem"}>
-        <Center bg="#ff9671" fontWeight={"semibold"}>
+      <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} gridTemplateRows={"25rem"}>
+        <Center bg="rgba(132,94,194,1)" fontWeight={"semibold"}>
           <Text fontSize={"1.5rem"} color="white">
             Extracurricular Events
           </Text>
         </Center>
         <GridItem overflow={"hidden"}>
-          <Image src="/temp1.jpg" w="100%" objectFit={"cover"} />
+          <Image src="/temp1.jpg" h="100%" objectFit={"cover"} />
+        </GridItem>
+        <Center bg="#ff6f91" fontWeight={"semibold"}>
+          <Text fontSize={"1.5rem"} color="white">
+              Community Outreach
+          </Text>
+        </Center>
+        <GridItem overflow={"hidden"}>
+          <Image src="/temp1.jpg" h="100%" objectFit={"cover"} />
         </GridItem>
       </Grid>
+
+      <Box w="100%" maxW="100rem" margin="0 auto" p="2rem">
+        <Stack>
+          <Heading>About the Coding Cougs</Heading>
+          <Text>The Coding Cougs are a programming club.</Text>
+        </Stack>
+      </Box>
     </Box>
   );
 }
