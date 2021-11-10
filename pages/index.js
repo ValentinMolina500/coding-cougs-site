@@ -35,6 +35,7 @@ export default function Home() {
     );
     return () => clearTimeout(intervalId);
   }, []);
+
   return (
     <Box w="100%" h="100vh" bg="red" p="0rem 0" bg="white">
       {/* Add custom font */}
@@ -160,6 +161,8 @@ export default function Home() {
               @ Washington State University Tri-Cities
             </Text>
             <Box mt="2rem">
+
+              {/* OCEAN'S TODO: Add an onClick handler to open users email client (mailto:) */}
               <Button
                 size="lg"
                 borderColor="#ff6f91"
@@ -168,6 +171,7 @@ export default function Home() {
               >
                 Contact Us
               </Button>
+
               <Button
                 color="white"
                 ml="1rem"
