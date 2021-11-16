@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+//import "../styles/sign-up.css"
 
 // import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -15,6 +16,12 @@ import {
   Grid,
   GridItem,
   Stack,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+  Select
 } from "@chakra-ui/react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
@@ -85,8 +92,40 @@ export default function SignUp() {
 
       {/* Sign up form */}
       <Box as="form" width="100%" maxW="40rem" bg="white" m="4rem auto" p="2rem" borderRadius={"0.5rem"}>
-        <Heading fontWeight={"semibold"} fontSize={"2rem"}>Sign Up</Heading>
+        <Heading color="black" fontWeight={"semibold"} fontSize={"2rem"}>Sign Up</Heading>
         <Text color="gray.500" mt="0.25rem">We just need a little bit of info.</Text>
+        <FormControl paddingTop="15px" id="first-name" isRequired>
+          <FormLabel color="black">First Name</FormLabel>
+          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="First name" />
+        </FormControl>
+        <FormControl paddingTop="15px" id="last-name" isRequired>
+          <FormLabel color="black">Last Name</FormLabel>
+          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+        </FormControl>
+        <FormControl paddingTop="15px" id="preferred-name">
+          <FormLabel color="black">Preferred Name</FormLabel>
+          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+        </FormControl>
+        <FormControl paddingTop="15px" id="email" isRequired>
+          <FormLabel color="black">WSU Email</FormLabel>
+          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} type="email" />
+          <FormHelperText color="black">We won't sell your email ;)</FormHelperText>
+        </FormControl>
+        <FormControl paddingTop="15px" id="major">
+          <Select borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Select Major">
+            <option>Computer Science</option>
+            <option>Math</option>
+          </Select>
+        </FormControl>
+        <Button
+          mt={4}
+          textColor="white"
+          bg="#ff6f91"
+          _hover={{ background: "#ee4e74" }}
+          type="submit"
+        >
+          Submit
+        </Button>
       </Box>
     </Box>
   );

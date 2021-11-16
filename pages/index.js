@@ -109,7 +109,7 @@ export default function Home() {
             <Heading color="gray.800" fontSize="3.5rem">
               Coding Cougs
             </Heading>
-            <Text mt="0.25rem">@ Washington State University Tri-Cities</Text>
+            <Text textColor="black" mt="0.25rem">@ Washington State University Tri-Cities</Text>
             <Box mt="1rem">
               {/* OCEAN'S TODO: Add an onClick handler to open users email client (mailto:) */}
 
