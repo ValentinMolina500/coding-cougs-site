@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Link from "next/link";
+
 // import Image from "next/image";
 import { useEffect, useState } from "react";
 import Particles from "react-tsparticles";
@@ -15,7 +17,6 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import TextTransition, { presets } from "react-text-transition";
-import Terminal from "terminal-in-react";
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
@@ -37,7 +38,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Box w="100%" h="100vh" bg="red" p="0rem 0" bg="white">
+    <Box w="100%" minH="100vh"  p="0rem 0rem 8rem 0rem" bg="white">
       {/* Add custom font */}
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,10 +57,10 @@ export default function Home() {
         p="1rem"
         background=" linear-gradient(43deg, rgba(132,94,194,1) 0%, rgba(214,93,177,1) 20%, rgba(255,111,145,1) 40%, rgba(255,150,113,1) 60%, rgba(255,199,95,1) 80%, rgba(249,248,113,1) 100%)"
       ></Box>
+      {/* Nav bar */}
 
-      <Box w="100%" maxW="100rem" margin="0 auto">
-        {/* Nav bar */}
-        <Flex justifyContent={"right"} alignItems="center" p="1rem">
+      <Box w="100%" maxW="100rem" margin="0 auto" bg="white">
+        <Flex justifyContent={"right"} alignItems="center" p="1rem 2rem">
           <Image
             w="48px"
             h="55px"
@@ -73,7 +74,16 @@ export default function Home() {
           <Text color="gray.800" fontWeight={"semibold"} mr="2rem">
             Events
           </Text>
-          <Button color="white" bg="#ff6f91">
+          <Button
+            color="white"
+            borderColor="#ff6f91"
+            variant={"outline"}
+            color="#ff6f91"
+            mr="2rem"
+          >
+            Contact Us
+          </Button>
+          <Button color="white" bg="#ff6f91" _hover={{ background: "#ee4e74" }}>
             Sign Up
           </Button>
         </Flex>
@@ -82,109 +92,51 @@ export default function Home() {
       <Grid
         gridTemplateRows="45rem"
         pos="relative"
+        gridTemplateColumns={"1fr 1fr"}
         placeItems={"center"}
         p="0rem"
       >
-        <Box pos="absolute" w="100%" h="100%" overflow={"hidden"} zIndex={0}>
-          <Box w="100%" h="100%" pos="relative">
-            <Particles
-              id="tsparticles"
-              options={{
-                fullScreen: false,
-                fpsLimit: 60,
-                //  rgba(132,94,194,1) 0%, rgba(214,93,177,1) 20%, rgba(255,111,145,1) 40%, rgba(255,150,113,1) 60%, rgba(255,199,95,1) 80%, rgba(249,248,113,1) 100%);
-                particles: {
-                  color: {
-                    value: ["rgba(132,94,194,1)", "rgba(214,93,177,1)", "rgba(255,111,145,1)", "rgba(255,150,113,1)", "rgba(255,199,95,1)", "rgba(249,248,113,1)"],
-                  },
-                  links: {
-                    color: "#111",
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.5,
-                    width: 1,
-                  },
-                  collisions: {
-                    enable: true,
-                  },
-                  move: {
-                    direction: "none",
-                    enable: true,
-                    outMode: "bounce",
-                    random: false,
-                    speed: 1,
-                    straight: false,
-                  },
-                  number: {
-                    density: {
-                      enable: true,
-                      value_area: 800,
-                    },
-                    value:100,
-                  },
-                  opacity: {
-                    value: 0.5,
-                  },
-                  shape: {
-                    type: "polygon",
-                    options: {
-                      polygon: [ { sides: 6 }]
-                    }
-                  },
-                  size: {
-                    random: true,
-                    value: 8,
-                  },
-                },
-                detectRetina: true,
-                
-              }}
-            />
-          </Box>
-        </Box>
-            
         <Flex
-          bg="rgba(255, 255, 255, 1)"
-          h="max-content"
-          p={"2rem"}
-          zIndex={"1"}
+          bg="rgba(255,111,145,0.15)"
+          h="100%"
+          w="100%"
+          p={"4rem"}
           flexDir={"column"}
           justifyContent={"center"}
           alignItems={"center"}
-          // borderRadius={"100%"}
         >
-          <Box mt="0.25rem" textAlign={"center"}>
+          <Box mt="0.25rem">
             <Heading color="gray.800" fontSize="3.5rem">
               Coding Cougs
             </Heading>
-            <Text color="gray.600" mt="0.25rem">
-              @ Washington State University Tri-Cities
-            </Text>
-            <Box mt="2rem">
-
+            <Text mt="0.25rem">@ Washington State University Tri-Cities</Text>
+            <Box mt="1rem">
               {/* OCEAN'S TODO: Add an onClick handler to open users email client (mailto:) */}
-              <Button
-                size="lg"
-                borderColor="#ff6f91"
-                variant="outline"
-                color="#ff6f91"
-              >
-                Contact Us
-              </Button>
 
-              <Button
-                color="white"
-                ml="1rem"
-                size="lg"
-                textAlign="center"
-                bg="#ff6f91"
-                rightIcon={<ArrowForwardIcon />}
-              >
-                Sign Up
-              </Button>
+              <Link href={"/sign-up"}>
+                <Button
+                  color="white"
+                  size="lg"
+                  textAlign="center"
+                  bg="#ff6f91"
+                  _hover={{ background: "#ee4e74" }}
+                  _active={{ background: "#ef2354" }}
+                  rightIcon={<ArrowForwardIcon />}
+                >
+                  Sign Up
+                </Button>
+              </Link>
             </Box>
           </Box>
         </Flex>
+        <Box
+          bg="red"
+          height={"100%"}
+          width={"100%"}
+          backgroundImage={"temp3.jpeg"}
+          backgroundSize="cover"
+          backgroundPosition={"center"}
+        ></Box>
       </Grid>
 
       <Center bg="gray.800" p="1.5rem">
@@ -196,8 +148,47 @@ export default function Home() {
           />
         </Text>
       </Center>
+
+      <Box w="100%" maxW="100rem" margin="0 auto" px="2rem" pt="4rem">
+        <Heading mb="2rem">What We Do</Heading>
+        <Grid gridTemplateColumns={"1fr 1fr 1fr"} columnGap={"2rem"}>
+          <GridItem
+            color="white"
+            borderWidth={"1px"}
+            borderStyle={"solid"}
+            borderColor={"gray.200"}
+            p="2rem"
+            borderRadius={"0.5rem"}
+            bg="rgba(132,94,194,1)"
+          >
+            <Text fontWeight={"semibold"}>Extracurricular Events</Text>
+          </GridItem>
+          <GridItem
+            color="white"
+            borderWidth={"1px"}
+            borderStyle={"solid"}
+            borderColor={"gray.200"}
+            p="2rem"
+            borderRadius={"0.5rem"}
+            bg="rgb(255 168 6)"
+          >
+            <Text fontWeight={"semibold"}>Career/Internship Help </Text>
+          </GridItem>
+          <GridItem
+            color="white"
+            borderWidth={"1px"}
+            borderStyle={"solid"}
+            borderColor={"gray.200"}
+            p="2rem"
+            borderRadius={"0.5rem"}
+            bg="rgba(255,150,113,1)"
+          >
+            <Text fontWeight={"semibold"}>Community Outreach </Text>
+          </GridItem>
+        </Grid>
+      </Box>
       {/* <Box bg="#ff9671" p="8rem"></Box> */}
-      <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} gridTemplateRows={"25rem"}>
+      {/* <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} gridTemplateRows={"25rem"}>
         <Center bg="rgba(132,94,194,1)" fontWeight={"semibold"}>
           <Text fontSize={"1.5rem"} color="white">
             Extracurricular Events
@@ -214,14 +205,14 @@ export default function Home() {
         <GridItem overflow={"hidden"}>
           <Image src="/temp1.jpg" h="100%" objectFit={"cover"} />
         </GridItem>
-      </Grid>
+      </Grid> */}
 
-      <Box w="100%" maxW="100rem" margin="0 auto" p="2rem">
+      {/* <Box w="100%" maxW="100rem" margin="0 auto" p="2rem">
         <Stack>
           <Heading>About the Coding Cougs</Heading>
           <Text>The Coding Cougs are a programming club.</Text>
         </Stack>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
