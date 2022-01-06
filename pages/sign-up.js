@@ -27,6 +27,53 @@ import {
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 export default function SignUp() {
+
+  const [inputFirstName, setInputFirstName] = useState('')
+  const [inputLastName, setInputLastName] = useState('')
+  const [inputPrefName, setInputPrefName] = useState('')
+  const [inputEmail, setInputEmail] = useState('')
+  const [inputMajor, setInputMajor] = useState('')
+
+  const firstNameChangeHandler = (event) => {
+    setInputFirstName(event.target.value)
+  };
+
+  const lastNameChangeHandler = (event) => {
+    setInputLastName(event.target.value)
+  }
+
+  const prefNameChangeHandler = (event) => {
+    setInputPrefName(event.target.value)
+  }
+
+  const emailChangeHandler = (event) => {
+    setInputEmail(event.target.value)
+  }
+
+  const majorChangeHandler = (event) => {
+    setInputMajor(event.target.value)
+  }
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const userSignUpData = {
+      firstName: inputFirstName,
+      lastName: inputLastName,
+      preferredName: inputPrefName,
+      wsuEmail: inputEmail,
+      major: inputMajor
+    }
+
+    console.log(userSignUpData)
+
+    setInputFirstName('')
+    setInputLastName('')
+    setInputPrefName('')
+    setInputEmail('')
+    setInputMajor('')
+  }
+
   return (
     <Box w="100%" minH="100vh" bg="red" p="0rem 0rem 8rem 0rem" bg="gray.100">
       <Head>
@@ -91,28 +138,28 @@ export default function SignUp() {
       </Box>
 
       {/* Sign up form */}
-      <Box as="form" width="100%" maxW="40rem" bg="white" m="4rem auto" p="2rem" borderRadius={"0.5rem"}>
+      <Box as="form" width="100%" maxW="40rem" bg="white" m="4rem auto" p="2rem" borderRadius={"0.5rem"} onSubmit={submitHandler}>
         <Heading color="black" fontWeight={"semibold"} fontSize={"2rem"}>Sign Up</Heading>
         <Text color="gray.500" mt="0.25rem">We just need a little bit of info.</Text>
         <FormControl paddingTop="15px" id="first-name" isRequired>
           <FormLabel color="black">First Name</FormLabel>
-          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="First name" />
+          <Input value={inputFirstName} onChange={firstNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="First name" />
         </FormControl>
         <FormControl paddingTop="15px" id="last-name" isRequired>
           <FormLabel color="black">Last Name</FormLabel>
-          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+          <Input value={inputLastName} onChange={lastNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
         </FormControl>
         <FormControl paddingTop="15px" id="preferred-name">
           <FormLabel color="black">Preferred Name</FormLabel>
-          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+          <Input value={inputPrefName} onChange={prefNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
         </FormControl>
         <FormControl paddingTop="15px" id="email" isRequired>
           <FormLabel color="black">WSU Email</FormLabel>
-          <Input borderColor="gray.500" color="black" _hover={{ background: "white" }} type="email" />
+          <Input value={inputEmail} onChange={emailChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} type="email" />
           <FormHelperText color="black">We won't sell your email ;)</FormHelperText>
         </FormControl>
         <FormControl paddingTop="15px" id="major">
-          <Select borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Select Major">
+          <Select value={inputMajor} onChange={majorChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Select Major">
             <option>Computer Science</option>
             <option>Math</option>
           </Select>
