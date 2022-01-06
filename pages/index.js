@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
+import Ticker from "react-ticker";
 
-// import Image from "next/image";
 import { useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 import {
@@ -15,9 +15,10 @@ import {
   Grid,
   GridItem,
   Stack,
+  Divider,
+  Lorem,
 } from "@chakra-ui/react";
 import TextTransition, { presets } from "react-text-transition";
-
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 const TEXTS = [
@@ -38,7 +39,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Box w="100%" minH="100vh"  p="0rem 0rem 8rem 0rem" bg="white">
+    <Box w="100%" minH="100vh" p="0rem 0rem 8rem 0rem" bg="white">
       {/* Add custom font */}
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,8 +58,8 @@ export default function Home() {
         p="1rem"
         background=" linear-gradient(43deg, rgba(132,94,194,1) 0%, rgba(214,93,177,1) 20%, rgba(255,111,145,1) 40%, rgba(255,150,113,1) 60%, rgba(255,199,95,1) 80%, rgba(249,248,113,1) 100%)"
       ></Box>
-      {/* Nav bar */}
 
+      {/* Nav bar */}
       <Box w="100%" maxW="100rem" margin="0 auto" bg="white">
         <Flex justifyContent={"right"} alignItems="center" p="1rem 2rem">
           <Image
@@ -75,7 +76,6 @@ export default function Home() {
             Events
           </Text>
           <Button
-            color="white"
             borderColor="#ff6f91"
             variant={"outline"}
             color="#ff6f91"
@@ -83,9 +83,15 @@ export default function Home() {
           >
             Contact Us
           </Button>
-          <Button color="white" bg="#ff6f91" _hover={{ background: "#ee4e74" }}>
-            Sign Up
-          </Button>
+          <Link href="/sign-up">
+            <Button
+              color="white"
+              bg="#ff6f91"
+              _hover={{ background: "#ee4e74" }}
+            >
+              Sign Up
+            </Button>
+          </Link>
         </Flex>
       </Box>
 
@@ -111,8 +117,6 @@ export default function Home() {
             </Heading>
             <Text textColor="black" mt="0.25rem">@ Washington State University Tri-Cities</Text>
             <Box mt="1rem">
-              {/* OCEAN'S TODO: Add an onClick handler to open users email client (mailto:) */}
-
               <Link href={"/sign-up"}>
                 <Button
                   color="white"
@@ -150,69 +154,85 @@ export default function Home() {
       </Center>
 
       <Box w="100%" maxW="100rem" margin="0 auto" px="2rem" pt="4rem">
-        <Heading mb="2rem">What We Do</Heading>
-        <Grid gridTemplateColumns={"1fr 1fr 1fr"} columnGap={"2rem"}>
-          <GridItem
-            color="white"
-            borderWidth={"1px"}
-            borderStyle={"solid"}
-            borderColor={"gray.200"}
-            p="2rem"
-            borderRadius={"0.5rem"}
-            bg="rgba(132,94,194,1)"
-          >
-            <Text fontWeight={"semibold"}>Extracurricular Events</Text>
-          </GridItem>
-          <GridItem
-            color="white"
-            borderWidth={"1px"}
-            borderStyle={"solid"}
-            borderColor={"gray.200"}
-            p="2rem"
-            borderRadius={"0.5rem"}
-            bg="rgb(255 168 6)"
-          >
-            <Text fontWeight={"semibold"}>Career/Internship Help </Text>
-          </GridItem>
-          <GridItem
-            color="white"
-            borderWidth={"1px"}
-            borderStyle={"solid"}
-            borderColor={"gray.200"}
-            p="2rem"
-            borderRadius={"0.5rem"}
-            bg="rgba(255,150,113,1)"
-          >
-            <Text fontWeight={"semibold"}>Community Outreach </Text>
+        <Heading mb="0.5rem">Who Are We </Heading>
+        <Grid gridTemplateColumns={"1fr 1fr"}>
+          <Text lineHeight={"2"} mb="2rem" fontSize={"1.25rem"}>
+            The Coding Cougs are the premier programming club hosted through
+            Washington State University Tri-Cities. We welcome anyone from any
+            major interested in computers and programming
+          </Text>
+        </Grid>
+
+        <Heading mb="1rem">What We Do</Heading>
+        <Grid gridTemplateColumns={"1fr 1fr"}>
+          <GridItem>
+            <Heading fontSize="1.5rem" fontWeight={"semibold"}>
+              Extracurricular Events
+            </Heading>
+            <Text lineHeight={"2"} mb="2rem" fontSize={"1rem"}>
+              The Coding Cougs are the premier programming club hosted through
+              Washington State University Tri-Cities. We welcome anyone from any
+              major interested in computers and programming
+            </Text>
           </GridItem>
         </Grid>
-      </Box>
-      {/* <Box bg="#ff9671" p="8rem"></Box> */}
-      {/* <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} gridTemplateRows={"25rem"}>
-        <Center bg="rgba(132,94,194,1)" fontWeight={"semibold"}>
-          <Text fontSize={"1.5rem"} color="white">
-            Extracurricular Events
-          </Text>
-        </Center>
-        <GridItem overflow={"hidden"}>
-          <Image src="/temp1.jpg" h="100%" objectFit={"cover"} />
-        </GridItem>
-        <Center bg="#ff6f91" fontWeight={"semibold"}>
-          <Text fontSize={"1.5rem"} color="white">
-              Community Outreach
-          </Text>
-        </Center>
-        <GridItem overflow={"hidden"}>
-          <Image src="/temp1.jpg" h="100%" objectFit={"cover"} />
-        </GridItem>
-      </Grid> */}
 
-      {/* <Box w="100%" maxW="100rem" margin="0 auto" p="2rem">
-        <Stack>
-          <Heading>About the Coding Cougs</Heading>
-          <Text>The Coding Cougs are a programming club.</Text>
-        </Stack>
-      </Box> */}
+        <Grid gridTemplateColumns={"1fr 1fr"}>
+          <GridItem gridColumn={"2"}>
+            <Heading fontSize="1.5rem" fontWeight={"semibold"}>
+              Career/Internship Help
+            </Heading>
+            <Text lineHeight={"2"} mb="2rem" fontSize={"1rem"}>
+              The Coding Cougs are the premier programming club hosted through
+              Washington State University Tri-Cities. We welcome anyone from any
+              major interested in computers and programming
+            </Text>
+          </GridItem>
+        </Grid>
+
+        <Grid gridTemplateColumns={"1fr 1fr"}>
+          <GridItem gridColumn={"1"}>
+            <Heading fontSize="1.5rem" fontWeight={"semibold"}>
+              Community Outreach
+            </Heading>
+            <Text lineHeight={"2"} mb="2rem" fontSize={"1rem"}>
+              The Coding Cougs are the premier programming club hosted through
+              Washington State University Tri-Cities. We welcome anyone from any
+              major interested in computers and programming
+            </Text>
+          </GridItem>
+        </Grid>
+
+        <Divider mb="2rem" />
+          <Ticker>
+            {({ index }) => (
+              <>
+                <Flex alignItems={"center"}>
+                  <Image   height="10rem"  src="./pnnl-min.png" mr="4rem" />
+                  <Image
+                    src="./hmis.svg"
+                    height="8rem" 
+                    alt="The Hanford Mission Intelligence Agency logo"
+                    mr="4rem"
+                  />
+                   <Image
+                    src="./google.svg"
+                    height="15rem" 
+                    mr="4rem"
+                  />
+                  <Image src="./enw.svg"      height="8rem" 
+                    mr="4rem" />
+                  {/* <p>this is index {index}</p> */}
+                  <Image src="./wrps.png" height="8rem" />
+                </Flex>
+
+              
+              </>
+            )}
+          </Ticker>
+          <Divider  mt="2rem" />
+       
+      </Box>
     </Box>
   );
 }

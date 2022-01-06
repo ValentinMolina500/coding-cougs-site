@@ -2,16 +2,12 @@ import Head from "next/head";
 import Link from "next/link";
 //import "../styles/sign-up.css"
 
-// import Image from "next/image";
-import { useEffect, useState } from "react";
-import Particles from "react-tsparticles";
 import {
   Box,
   Heading,
   Flex,
   Button,
   Text,
-  Center,
   Image,
   Grid,
   GridItem,
@@ -23,8 +19,6 @@ import {
   Input,
   Select
 } from "@chakra-ui/react";
-
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 export default function SignUp() {
 
@@ -75,7 +69,7 @@ export default function SignUp() {
   }
 
   return (
-    <Box w="100%" minH="100vh" bg="red" p="0rem 0rem 8rem 0rem" bg="gray.100">
+    <Box w="100%" minH="100vh" p="0rem 0rem 8rem 0rem" bg="gray.100">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -105,16 +99,14 @@ export default function SignUp() {
           p="1rem 2rem"
         >
           <Link href="/">
-
-          <Image
-            cursor={"pointer"}
-            w="48px"
-            h="55px"
-            src="/2022_logo.png"
-            style={{ marginRight: "auto" }}
-          />
+            <Image
+              cursor={"pointer"}
+              w="48px"
+              h="55px"
+              src="/2022_logo.png"
+              style={{ marginRight: "auto" }}
+            />
           </Link>
-
 
           <Text color="gray.800" fontWeight={"semibold"} mr="2rem">
             About Us
@@ -123,10 +115,9 @@ export default function SignUp() {
             Events
           </Text>
           <Button
-            color="white"
+            color="#ff6f91"
             borderColor="#ff6f91"
             variant={"outline"}
-            color="#ff6f91"
             mr="2rem"
           >
             Contact Us
