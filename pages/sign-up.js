@@ -155,6 +155,7 @@ export default function SignUp() {
           <FormHelperText color="black">We won't sell your email ;)</FormHelperText>
         </FormControl>
         <FormControl paddingTop="15px" id="major" isRequired>
+          <FormLabel color="black">Major</FormLabel>
           <Select value={inputMajor} onChange={majorChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Select Major">
             <option>Computer Science</option>
             <option>Math</option>
