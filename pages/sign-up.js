@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-//import "../styles/sign-up.css"
+import { db } from "../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
+import { useState } from "react";
 
 import {
   Box,
@@ -27,6 +29,7 @@ export default function SignUp() {
   const [inputPrefName, setInputPrefName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
   const [inputMajor, setInputMajor] = useState('')
+  const signUpCollectionRef = collection(db, "Sign Up Information")
 
   const firstNameChangeHandler = (event) => {
     setInputFirstName(event.target.value)
@@ -48,7 +51,7 @@ export default function SignUp() {
     setInputMajor(event.target.value)
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const userSignUpData = {
@@ -60,6 +63,8 @@ export default function SignUp() {
     }
 
     console.log(userSignUpData)
+
+    await addDoc(signUpCollectionRef, userSignUpData);
 
     setInputFirstName('')
     setInputLastName('')
@@ -134,22 +139,22 @@ export default function SignUp() {
         <Text color="gray.500" mt="0.25rem">We just need a little bit of info.</Text>
         <FormControl paddingTop="15px" id="first-name" isRequired>
           <FormLabel color="black">First Name</FormLabel>
-          <Input value={inputFirstName} onChange={firstNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="First name" />
+          <Input value={inputFirstName} onChange={firstNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} />
         </FormControl>
         <FormControl paddingTop="15px" id="last-name" isRequired>
           <FormLabel color="black">Last Name</FormLabel>
-          <Input value={inputLastName} onChange={lastNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+          <Input value={inputLastName} onChange={lastNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} />
         </FormControl>
         <FormControl paddingTop="15px" id="preferred-name">
           <FormLabel color="black">Preferred Name</FormLabel>
-          <Input value={inputPrefName} onChange={prefNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Last name" />
+          <Input value={inputPrefName} onChange={prefNameChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} />
         </FormControl>
         <FormControl paddingTop="15px" id="email" isRequired>
           <FormLabel color="black">WSU Email</FormLabel>
           <Input value={inputEmail} onChange={emailChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} type="email" />
           <FormHelperText color="black">We won't sell your email ;)</FormHelperText>
         </FormControl>
-        <FormControl paddingTop="15px" id="major">
+        <FormControl paddingTop="15px" id="major" isRequired>
           <Select value={inputMajor} onChange={majorChangeHandler} borderColor="gray.500" color="black" _hover={{ background: "white" }} placeholder="Select Major">
             <option>Computer Science</option>
             <option>Math</option>
