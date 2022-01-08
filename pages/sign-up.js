@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { db } from "../firebase-config";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useState } from "react";
 
 import {
@@ -19,7 +19,8 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
-  Select
+  Select,
+  useToast
 } from "@chakra-ui/react";
 
 export default function SignUp() {
@@ -30,6 +31,7 @@ export default function SignUp() {
   const [inputEmail, setInputEmail] = useState('')
   const [inputMajor, setInputMajor] = useState('')
   const signUpCollectionRef = collection(db, "Sign Up Information")
+  const toast = useToast()
 
   const firstNameChangeHandler = (event) => {
     setInputFirstName(event.target.value)
@@ -53,24 +55,50 @@ export default function SignUp() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    const signUpDataSnapshot = await getDocs(signUpCollectionRef)
+    const signUpList = signUpDataSnapshot.docs.map(doc => doc.data())
+    const signUpListEmails = []
+
+    for (let i = 0; i < signUpList.length; i++) {
+      signUpListEmails.push(signUpList[i].wsuEmail);
+    }
 
     const userSignUpData = {
       firstName: inputFirstName,
       lastName: inputLastName,
       preferredName: inputPrefName,
-      wsuEmail: inputEmail,
+      wsuEmail: inputEmail.toLowerCase(),
       major: inputMajor
     }
 
-    console.log(userSignUpData)
+    // check whether the user input email exists in the database
+    if (signUpListEmails.includes(userSignUpData.wsuEmail) === false) {
+      await addDoc(signUpCollectionRef, userSignUpData);
 
-    await addDoc(signUpCollectionRef, userSignUpData);
+      toast({
+        title: 'Success',
+        description: "Thank you for signing up!",
+        position: 'bottom',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
 
-    setInputFirstName('')
-    setInputLastName('')
-    setInputPrefName('')
-    setInputEmail('')
-    setInputMajor('')
+      setInputFirstName('')
+      setInputLastName('')
+      setInputPrefName('')
+      setInputEmail('')
+      setInputMajor('')
+    } else {
+      toast({
+        title: 'Warning',
+        description: "You have already signed up!",
+        position: 'bottom',
+        status: 'warning',
+        duration: 9000,
+        isClosable: true,
+      })
+    }
   }
 
   return (
